@@ -5,7 +5,7 @@
 #+ displays 17 and then bad_luck from Italy
 
 loop=1
-while [ $loop -le 20]
+while [ $loop -le 20 ]
 do
 	echo "$loop"
 	case $loop in
