@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 #Displays the PID along with the processes name of
 #+ prpcesses whose name contains "bash"
 
