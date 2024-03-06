@@ -2,9 +2,8 @@
 #Displays 'To infinity and beyond' with
 #+ a sleep 2 in between each iteration
 #Displays 'I am Invincible6'
-while true
-do
-echo "To Infinity and beyond"
-sleep 2
-trap 'echo 6 "I am invincible!!!"' SIGTERM
+trap 'echo "I am invincible!!!"' SIGTERM
+while true; do
+	echo "To Infinity and beyond"
+	sleep 2
 done
