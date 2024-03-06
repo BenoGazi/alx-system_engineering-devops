@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Prints "Best School 10 times with 'until'"
+count = 0
+until [ $count -eq 10 ]
+do
+	eco "Best School"
+	(( count++ ))
+done
