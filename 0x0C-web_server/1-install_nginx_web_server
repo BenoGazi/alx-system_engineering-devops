@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#Install Ngix with the configurations;
+#+ Listen on Port 80.
+#+ Return a page containing the string "Hello World!"
+#++ at the root with a curl GET request
+#update the package an install
+sudo apt-get update
+sudo apt-get install nginx -y
+#Create the '/etc/nginx/html' file a the root document for nginx
+mkdir /etc/nginx/html
+#create an empty index file.html file inside the previous directory
+touch /etc/nginx/html/index.html
+#write "Hello World!" into the index.html file
+echo "Hello World!" > /etc/nginx/html/index.html
+#Now set Nginx to listen on port 80 and run files from the previous directory
+printf %s "server {
+listen 80;
+listen [::]:80 default_server;
+root etc/nginx/html;
+index index.html index.htm;
+}" > etc/nginx/sites-available/default
+#Restarts the nginx service to apply changes
+systemctl restart nginx
