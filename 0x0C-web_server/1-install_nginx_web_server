@@ -21,4 +21,4 @@ index index.html index.htm;
 }
 " > etc/nginx/sites-available/default
 #Restarts the nginx service to apply changes
-systemctl restart nginx
+service nginx restart
