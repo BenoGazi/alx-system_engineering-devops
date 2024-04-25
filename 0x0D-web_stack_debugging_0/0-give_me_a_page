@@ -1,0 +1,3 @@
+#!usr/bin/env bash
+#Comman used to fix the server
+sudo service apache2 start
