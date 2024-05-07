@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # Configures a new ubuntu machine by installing
 # Nginx where it should be listening on port 80
 # Serve a page that would return a Hello World string
@@ -37,3 +38,50 @@ sudo sed -i '25i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/de
 sudo service nginx restart
 
 echo -e "\nCompleted.\n"
+=======
+# Installs Nginx and should be listening on port 80
+# Serve a page that would return a Hello World string
+
+echo "###First Updating and installation follows.\n"
+sudo apt-get update -y && 
+	sudo apt-get install nginx -y
+echo "----Getting system ready----"
+
+#Starting new nginx serve
+echo "---Nginx is starting---"
+sudo service nginx start
+
+#allowing Nginx on firewall
+read -p "Do you want to allow Nginx through the firewall? (yes/no): " choice
+if [[ $choice == "yes" ]]; then
+	sudo ufw allow 'Nginx HTTP'
+	echo "Nginx has been allowed through the firewall."
+elif [[ $choice == "no" ]]; then
+	echo "Nginx will not be allowed through the firewall."
+else
+	echo "Invalid choice. Please enter 'yes' or 'no'."
+fi
+
+#Allow ownership to the website file for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www/html
+
+#Backup index at default
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+#New Index
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+#Setting up/redirect_me to youtube video
+sudo sed -i '24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+#404 Page Not found
+echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
+sudo sed -i '25i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
+
+#Restarting Nginx
+echo "---Nginx is restarting---"
+sudo service nginx restart
+
+echo "---Nginx installation Complete---"
+>>>>>>> 150950687bbebe22e4100b0b48b60825eee6a7bc
