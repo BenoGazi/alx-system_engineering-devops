@@ -34,7 +34,7 @@ sudo sed -i '24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUl
 =======
 # Set up a 404 page
 >>>>>>> 7cb3df4ce80917bbb786eb0d85d067eaf4d383c7
-echo "Ceci n'est pas une page" > /var/www/html/error_404.html
+echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
 sudo sed -i '25i\	error_page 404 /error_404.html;' /etc/nginx/sites-available/default
 
 # Restarting nginx
