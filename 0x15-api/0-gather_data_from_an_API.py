@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Returns a to-do list info for a given employee ID"""
+
 import requests
 import sys
 
@@ -10,5 +11,4 @@ if __name__ == "__main__":
     com = [t.get("title") for t in todos if t.get("completed") is True]
     print("Employee {} is done with the tasks({}/{}):".format(
         user.get("name"), len(com), len(todos)))
-    for c in com:
-        print("\t{}".format(c))
+    [print("\t {}".format(c)) for c in com]
