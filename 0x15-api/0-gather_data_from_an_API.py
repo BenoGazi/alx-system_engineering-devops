@@ -7,10 +7,8 @@ if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
     user = requests.get(url + "users/{}".format(sys.argv[1])).json()
     todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
-    com = [task["title"] for task in todos if task["completed"]]
-    name = user["name"]
-    com_count = len(com)
-    total_count = len(todos)
-    print(f"Employee {name} is done with tasks({com_count}/{total_count}):")
-    for task in com:
-        print("\t", task)
+    com = [t.get("title") for t in todos if t.get("completed") is True]
+    print("Employee {} is done with the tasks({}/{}):".format(
+        user.get("name"), len(com), len(todos)))
+    for c in com:
+        print("\t{}".format(c))
